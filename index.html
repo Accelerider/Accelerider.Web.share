@@ -1,0 +1,103 @@
+<!--
+-   Accelerider.Web.share
+-   made    by zishuo
+-   date    12/26/2017
+-   ver     1.0.1
+-->
+<!doctype html>
+<html>
+        <head>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="renderer" content="webkit">
+            <title>坐骑云</title>
+            <link href="https://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+            <link href="./static/css/site.css" rel="stylesheet">
+            <script src="http://ossweb-img.qq.com/images/js/jquery/jquery-1.10.2.min.js"></script>
+            <script src="https://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+            <script src="./static/layer/layer.js"></script>
+            <script src="./static/js/public.js?1.5"></script>
+            <!--[if lte IE 9]>
+            <script src="./static/js/requestAnimationFrame.js"></script>
+            <![endif]-->
+            <!--我正在用「四酱云」分享文件, 链接:http://share.accelerider.com/?shareid=MffpkAMdTQfu 密码:123456-->
+            <style>
+            a:link{text-decoration:none;}a:visited{text-decoration:none;}a:hover{text-decoration:none;}a:active{text-decoration:none;}
+            .main-header{z-index:1;height:50px;background-color:#3C444D;width:100%;line-height:50px;position:fixed}
+            .main-header .userinfo p{color:#fff;text-align: right;padding-right:10px;}
+            .main-header .userinfo a{color:#fff;padding:0 10px;}
+            .main-content{min-width:1000px;}
+            .footer{bottom:0;position:absolute;text-align:center;width:100%;line-height:50px}
+            </style>
+        </head>
+        <body>
+            <div class="bt-warp bge6 " scrolling="no">
+                <div class="sidebar-scroll">
+                    <div class="sidebar-auto">
+                        <h3 class="mypcip"><span class="f14 cw">坐骑云</span></h3>
+                        <ul class="menu">
+                                <li id="memuA"> <a class="menu_home" href="JavaScript::">全部文件</a></li>
+                                <li id="memuAfirewall"><a class="menu_firewall" href="JavaScript::">图片</a></li>
+                                <li id="memuAfiles"><a class="menu_folder" href="JavaScript::">文档</a></li>
+                                <li id="memuAcrontab"><a class="menu_day" href="JavaScript::">视频</a></li>
+                                <li id="memuAsoft"><a class="menu_soft" href="JavaScript::">种子</a></li>
+                                <li id="memuAconfig"><a class="menu_set" href="JavaScript::">音乐</a></li>
+                                <li id="memuAconfig"><a class="menu_set" href="JavaScript::">其他</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="container" class="container-fluid">
+                    <a style="display: none;" id="defaultPath">/</a>
+                    <div class="main-header">
+                        <div class="userinfo">
+                            <p>
+                                <a class="menu_dopay" href="javascript:;" data-msg="赞助项目可以提供更长久的服务" id="dopay">赞助本项目</a>
+                                <a class="menu_dohelp" href="javascript:;" data-msg="点击即可设置Aria2客户端地址" id="doaria2" onclick="DoAria2(0)">设置Aria2</a>
+                                <a class="menu_logout" href="javascript:;"  data-msg="您确认要退出系统马？" id="dologout">退出</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="main-content">
+                        <div class="container-fluid" style="padding-bottom:50px">
+                            <div class="file-box bgw mtb15" style="position:relative; padding-top:110px">
+                                    <div id="tipTools" class="plr15">
+                                            <div class="ptb15">
+                                                    <div class="clearfix">
+                                                        <div class="pull-left">
+                                                                <button id="backBtn" class="backBtn btn btn-default btn-sm glyphicon glyphicon-arrow-left pull-left" title="后退" onClick="BackDir()"></button>
+                                                                <button class="backBtn refreshBtn btn btn-default btn-sm glyphicon glyphicon-refresh pull-right" title="刷新" style="margin-left:-1px;"></button>
+                                                                <span id='DirPathPlace' class="pull-left"><input id="fileInputPath" type="text"></span>
+                                                                <span id='PathPlaceBtn' class="pull-left"></span>
+                                                        </div>
+                                                        <div class="pull-left mlr15" style="line-height:26px"><span id='DirInfo'></span></div>
+                                                    </div>
+                                            </div>
+                                            <div class="clearfix ptb10">
+                                                    <!--<button class="btn btn-default btn-sm pull-left" onclick="GetShareFiles()" style="margin:0 5px">提取文件</button>-->
+                                                    <!--<button class="btn btn-default btn-sm pull-left" onclick="DownloadFile()" title='下载文件到服务器' style="margin:0 5px">远程下载</button>-->
+                                                    <span id='BarTools'></span>
+                                                    <span id='Batch' style="background-color:#fff;position:absolute;right:190px;z-index:10"></span>
+                                                    <!--<span id='comlist' class="comlist"></span>-->
+                                                    <div class="btn-group btn-group-sm pull-right" style="margin-right:5px;">
+                                                            <button id="set_icon" title="图标排列" type="button" class="btn btn-default">
+                                                                    <i class="glyphicon glyphicon-th"></i>
+                                                            </button>
+                                                            <button id="set_list" title="列表排列" type="button" class="btn btn-default active">
+                                                                    <i class="glyphicon glyphicon-th-list"></i>
+                                                            </button>
+                                                    </div>
+                                            </div>
+                                    </div>
+                                    <div class="divtable pd15" id="fileCon"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer bgw">坐骑云  ©2014-2017 by ZiShuo</div>
+                </div>
+                <script src="./static/js/jquery-ui.min.js"></script>
+                <script src="https://cdn.bootcss.com/jquery-contextify/1.0.8/jquery.contextify.min.js"></script>
+                <script src="./static/js/files.js?1.1"></script>
+                <!--<script src="https://cdn.bootcss.com/zclip/1.1.2/jquery.zclip.min.js"></script>-->
+            </div>
+        </body>
+</html>
